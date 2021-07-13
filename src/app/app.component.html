@@ -1,35 +1,19 @@
 <mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>
+
+  <mat-drawer #menupanel mode="side"  [(opened)]="fix ? true : opened">
     <mat-toolbar color="primary">
-      <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
       <span class="example-spacer"></span>
-     
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-       <mat-icon>share</mat-icon>
-     </button>
+
+      <button mat-icon-button class="example-icon" aria-label="share" (click)="fixed()">
+        <mat-icon>{{fix ? 'push_pin' : 'location_off'}}</mat-icon>
+      </button>
+
     </mat-toolbar>
-
-
-    <mat-accordion>
-      <mat-expansion-panel hideToggle>
-
-        <mat-expansion-panel-header>
-        </mat-expansion-panel-header>
-        <a mat-button  routerLink="/producteurs">Page 1</a>
-      </mat-expansion-panel>
-    </mat-accordion>
-    
-    <mat-menu #menu="matMenu">
-      <a mat-button  routerLink="/producteurs">Page 1</a>
-    </mat-menu>
-    
-    
+    <a mat-button (click)="fix ? null : menupanel.toggle()" routerLink="/producteurs">Producteurs</a>
   </mat-drawer>
-  <mat-drawer-content>
-   
-    <router-outlet></router-outlet>
 
+  <mat-drawer-content >
+    <router-outlet></router-outlet>
   </mat-drawer-content>
+
 </mat-drawer-container>

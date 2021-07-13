@@ -1,5 +1,7 @@
-import {Component, ViewChild} from '@angular/core';
-import {MatAccordion} from '@angular/material/expansion';
+import { Component, ViewChild } from '@angular/core';
+import { MatAccordion } from '@angular/material/expansion';
+import { MatSidenav } from '@angular/material/sidenav';
+import { SidenavService } from './services/sidenav.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,19 @@ import {MatAccordion} from '@angular/material/expansion';
 })
 export class AppComponent {
   title = 'SPA-producteurs';
+  @ViewChild('menupanel') menupanel!: MatSidenav;
 
-  @ViewChild(MatAccordion) accordion!: MatAccordion;
+  fix: boolean = true
+  opened: boolean = true
+
+  fixed() {
+    this.fix = !this.fix
+  }
+
+  constructor(private sidenavService: SidenavService) {
+    sidenavService.changeEmitted$.subscribe(
+      opened => {
+        this.opened = opened
+      });
+  }
 }
