@@ -1,5 +1,35 @@
-<a mat-raised-button routerLink="/producteurs">Page 1</a>
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <mat-toolbar color="primary">
+      <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="example-spacer"></span>
+     
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+       <mat-icon>share</mat-icon>
+     </button>
+    </mat-toolbar>
 
-<main>
-   <router-outlet></router-outlet>
-</main>
+
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+
+        <mat-expansion-panel-header>
+        </mat-expansion-panel-header>
+        <a mat-button  routerLink="/producteurs">Page 1</a>
+      </mat-expansion-panel>
+    </mat-accordion>
+    
+    <mat-menu #menu="matMenu">
+      <a mat-button  routerLink="/producteurs">Page 1</a>
+    </mat-menu>
+    
+    
+  </mat-drawer>
+  <mat-drawer-content>
+   
+    <router-outlet></router-outlet>
+
+  </mat-drawer-content>
+</mat-drawer-container>
