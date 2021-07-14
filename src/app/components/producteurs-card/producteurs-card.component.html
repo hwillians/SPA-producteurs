@@ -1,0 +1,58 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image">
+            <ngx-avatar [name]="(producteur.Lastname)+(' ')+(producteur.Firstname)"></ngx-avatar>
+        </div>
+        <mat-card-title>{{producteur.Lastname}} {{producteur.Firstname}}</mat-card-title>
+        <mat-card-subtitle>{{producteur.Village}}</mat-card-subtitle>
+        {{producteur.Performance}}
+    </mat-card-header>
+
+
+    <mat-card-content>
+        <mat-grid-list cols="6" rowHeight="100px">
+            <mat-grid-tile rowspan="2" >
+                <button mat-mini-fab disabled aria-label="Example icon button with a home icon">
+                    <mat-icon>home</mat-icon>
+                </button>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="5">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput [formControl]="lastname" [(ngModel)]="producteur.Lastname" required readonly>
+                    <mat-error *ngIf="lastname.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="5">
+                <mat-form-field appearance="fill">
+                    <mat-label>Prenom</mat-label>
+                    <input matInput [formControl]="firstname" [(ngModel)]="producteur.Firstname" required readonly>
+                    <mat-error *ngIf="firstname.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <button mat-mini-fab disabled aria-label="Example icon button with a home icon">
+                    <mat-icon>home</mat-icon>
+                </button>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="5">
+                <mat-divider></mat-divider>
+                <mat-form-field appearance="fill">
+                    <mat-label>Addresse</mat-label>
+                    <input matInput [formControl]="addres" [(ngModel)]="producteur.Village" required readonly>
+                    <mat-error *ngIf="addres.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+
+        <h5>cultures</h5>
+
+        <span *ngFor="let rendement of producteur.Rendements">
+            {{rendement.Farming}}
+        </span>
+
+    </mat-card-content>
+
+</mat-card>

@@ -1,0 +1,23 @@
+mat-card{
+    height: auto;
+}
+
+mat-card:hover {
+	background-color: yellowgreen;
+}
+
+mat-sidenav-container{
+    height: 100%;
+}
+
+cdk-virtual-scroll-viewport{
+    height: 80%;
+}
+
+.search-field {
+    width: 100%;
+  }
+
+  .example-item {
+    height: 50px;
+  }

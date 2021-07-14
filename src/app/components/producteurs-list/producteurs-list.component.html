@@ -1,0 +1,33 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" position="end">
+        <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+        <app-producteurs-card></app-producteurs-card>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-form-field class="search-field" appearance="outline">
+            <!-- <mat-label>Favorite food</mat-label> -->
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <input matInput (keyup)="getProducteursByName($event)" placeholder="Rechercher un producteur" >
+        </mat-form-field>
+
+        <mat-card *ngIf="producteurs.length == 0">Cette recherche ne correspond à aucun producteur</mat-card>
+
+        <cdk-virtual-scroll-viewport itemSize="20" class="example-viewport" >
+            <mat-card *cdkVirtualFor="let producteur of producteurs" (click)="getProducteur(producteur);sidenav.toggle()">
+                <ngx-avatar [name]="(producteur.Lastname)+(' ')+(producteur.Firstname)"></ngx-avatar>
+                {{producteur.Lastname}}
+                {{producteur.Firstname}}
+                {{Totalrendement(producteur )}}
+                <span *ngFor="let rendement of producteur.Rendements">
+                    {{rendement.Farming}}
+                </span>
+            </mat-card>
+        </cdk-virtual-scroll-viewport>
+
+
+       
+    </mat-sidenav-content>
+</mat-sidenav-container>
+

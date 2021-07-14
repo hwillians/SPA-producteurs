@@ -26,9 +26,9 @@ export class ProducteursComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.locationService.getPosition().then(pos => {
-      console.log(`Positon: ${pos.lng} ${pos.lat}`);
-    });
+    // this.locationService.getPosition().then(pos => {
+    //   console.log(`Positon: ${pos.lng} ${pos.lat}`);
+    // });
 
     const myIcon = L.icon({
       iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
