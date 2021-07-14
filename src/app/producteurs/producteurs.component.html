@@ -13,14 +13,14 @@
 
   </mat-toolbar>
 
-  <mat-drawer-container class="example-container">
+  <mat-drawer-container class="example-container" autosize>
 
-    <mat-drawer mode="side" opened>
-      <div id="producteursMap"></div>
-    </mat-drawer>
+    <mat-drawer mode="side" opened position="end">
+      <app-producteurs-list></app-producteurs-list>
+    </mat-drawer> 
 
     <mat-drawer-content>
-      Drawer content
+      <div id="producteursMap"></div>
     </mat-drawer-content>
 
   </mat-drawer-container>
