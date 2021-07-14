@@ -1,0 +1,45 @@
+<mat-grid-list cols="7" rowHeight="75px">
+    <mat-grid-tile rowspan="2">
+        <mat-icon>person</mat-icon>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="5">
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput [formControl]="lastname" [value]="producteur.Lastname" required readonly>
+            <mat-error *ngIf="lastname.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="2">
+        <button mat-mini-fab aria-label="Example icon button with a home icon">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="5">
+        <mat-form-field appearance="fill">
+            <mat-label>Prenom</mat-label>
+            <input matInput [formControl]="firstname" [value]="producteur.Firstname" required readonly>
+            <mat-error *ngIf="firstname.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-icon>home</mat-icon>
+    </mat-grid-tile>
+
+    <mat-divider></mat-divider>
+    <mat-grid-tile colspan="5">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Addresse</mat-label>
+            <input matInput [formControl]="addres" [value]="producteur.Village" required readonly>
+            <mat-error *ngIf="addres.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<h5>cultures</h5>
+
+<span *ngFor="let rendement of producteur.Rendements">
+    {{rendement.Farming}}
+</span>

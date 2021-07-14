@@ -1,3 +1,4 @@
+import { ElementRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProducteursCardComponent } from './producteurs-card.component';
@@ -5,6 +6,7 @@ import { ProducteursCardComponent } from './producteurs-card.component';
 describe('ProducteursCardComponent', () => {
   let component: ProducteursCardComponent;
   let fixture: ComponentFixture<ProducteursCardComponent>;
+
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

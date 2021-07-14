@@ -1,7 +1,9 @@
 mat-card{
     height: auto;
 }
-
+.sides{
+  width:   300px;
+}
 mat-card:hover {
 	background-color: yellowgreen;
 }

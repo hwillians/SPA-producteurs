@@ -1,11 +1,11 @@
 <mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav mode="side" position="end">
+    <mat-sidenav class="sides" #sidenav mode="side" position="end">
         <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
         <app-producteurs-card></app-producteurs-card>
 
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content class="sides">
         <mat-form-field class="search-field" appearance="outline">
             <!-- <mat-label>Favorite food</mat-label> -->
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
@@ -19,15 +19,12 @@
                 <ngx-avatar [name]="(producteur.Lastname)+(' ')+(producteur.Firstname)"></ngx-avatar>
                 {{producteur.Lastname}}
                 {{producteur.Firstname}}
-                {{Totalrendement(producteur )}}
+                {{Totalrendement(producteur)}}
                 <span *ngFor="let rendement of producteur.Rendements">
                     {{rendement.Farming}}
                 </span>
             </mat-card>
         </cdk-virtual-scroll-viewport>
-
-
-       
     </mat-sidenav-content>
 </mat-sidenav-container>
 

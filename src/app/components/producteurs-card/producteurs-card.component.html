@@ -1,58 +1,43 @@
 <mat-card class="example-card">
     <mat-card-header>
-        <div mat-card-avatar class="example-header-image">
-            <ngx-avatar [name]="(producteur.Lastname)+(' ')+(producteur.Firstname)"></ngx-avatar>
-        </div>
-        <mat-card-title>{{producteur.Lastname}} {{producteur.Firstname}}</mat-card-title>
-        <mat-card-subtitle>{{producteur.Village}}</mat-card-subtitle>
-        {{producteur.Performance}}
     </mat-card-header>
+    <mat-grid-list class="head" cols="8" rowHeight="25px">
+        <mat-grid-tile colspan="2" rowspan="3">
+            <div mat-card-avatar class="example-header-image">
+                <ngx-avatar [name]="(producteur.Lastname)+(' ')+(producteur.Firstname)"></ngx-avatar>
+            </div>
+        </mat-grid-tile>
 
+        <mat-grid-tile rowspan="2" colspan="4">
+            <mat-card-title>{{producteur.Lastname}} {{producteur.Firstname}}</mat-card-title>
+        </mat-grid-tile>
+        <mat-grid-tile rowspan="4">
+            <button mat-icon-button>
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3">
+            <mat-icon>home</mat-icon>
+            <mat-card-subtitle>{{producteur.Village}}</mat-card-subtitle>
+        </mat-grid-tile>
 
+        <mat-grid-tile colspan="8">
+            <div class="stars"></div>
+            <mat-icon *ngFor="let rendement of Arr(producteur.Performance)">star_border</mat-icon>
+        </mat-grid-tile>
+    </mat-grid-list>
     <mat-card-content>
-        <mat-grid-list cols="6" rowHeight="100px">
-            <mat-grid-tile rowspan="2" >
-                <button mat-mini-fab disabled aria-label="Example icon button with a home icon">
-                    <mat-icon>home</mat-icon>
-                </button>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="5">
-                <mat-form-field appearance="fill">
-                    <mat-label>Name</mat-label>
-                    <input matInput [formControl]="lastname" [(ngModel)]="producteur.Lastname" required readonly>
-                    <mat-error *ngIf="lastname.invalid">{{getErrorMessage()}}</mat-error>
-                </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="5">
-                <mat-form-field appearance="fill">
-                    <mat-label>Prenom</mat-label>
-                    <input matInput [formControl]="firstname" [(ngModel)]="producteur.Firstname" required readonly>
-                    <mat-error *ngIf="firstname.invalid">{{getErrorMessage()}}</mat-error>
-                </mat-form-field>
-
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <button mat-mini-fab disabled aria-label="Example icon button with a home icon">
-                    <mat-icon>home</mat-icon>
-                </button>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="5">
-                <mat-divider></mat-divider>
-                <mat-form-field appearance="fill">
-                    <mat-label>Addresse</mat-label>
-                    <input matInput [formControl]="addres" [(ngModel)]="producteur.Village" required readonly>
-                    <mat-error *ngIf="addres.invalid">{{getErrorMessage()}}</mat-error>
-                </mat-form-field>
-            </mat-grid-tile>
-        </mat-grid-list>
-
-
-        <h5>cultures</h5>
-
-        <span *ngFor="let rendement of producteur.Rendements">
-            {{rendement.Farming}}
-        </span>
-
+        <button mat-button>
+            <img src="https://aixmarseille.spelc.fr/languedoc_roussillon/fleche-verte.png/image" width="25px"
+                height="25px" class="rotate180" alt="fleche à gauche">
+        </button>
+        <span>Fiche</span> <button mat-button color="primary">
+            <img src="https://img1.freepng.fr/20180320/eae/kisspng-area-rectangle-symbol-number-curved-white-arrow-png-5ab1bd540ce335.8013158515215977800528.jpg"
+                width="25px" height="25px" class="rotate180" alt="fleche à gauche">
+        </button>
+        <button mat-button> <img src="https://aixmarseille.spelc.fr/languedoc_roussillon/fleche-verte.png/image"
+                width="25px" height="25px" alt="fleche à gauche"></button>
+        <app-personal-card [producteur]="producteur"></app-personal-card>
+        <app-yield-card [producteur]="producteur"></app-yield-card>
     </mat-card-content>
-
 </mat-card>
