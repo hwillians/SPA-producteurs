@@ -5,15 +5,20 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SidenavService {
-
+  
   constructor() { }
 
-  // Observable string sources
-  private emitChangeSource = new Subject<any>();
-  // Observable string streams
-  changeEmitted$ = this.emitChangeSource.asObservable();
-  // Service message commands
+
+  private emitChangeSource = new Subject<any>()
+  private toCloseProducteursCard = new Subject<boolean>()
+
+  changeEmitted$ = this.emitChangeSource.asObservable()
+  producteursCardColsed$= this.toCloseProducteursCard.asObservable()
+
   emitChange(opened: boolean ) {
-      this.emitChangeSource.next(opened);
+    this.emitChangeSource.next(opened)
+  }
+  closeProducteursCard(opened: boolean) {
+    this.toCloseProducteursCard.next(opened)
   }
 }

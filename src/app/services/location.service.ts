@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { LayerGroup, LatLngTuple } from 'leaflet';
 import * as L from 'leaflet';
+import { Subject } from 'rxjs';
+import { Producteur } from '../models/producteur';
 
 @Injectable({
   providedIn: 'root'
@@ -59,15 +61,17 @@ export class LocationService {
     L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 
     return myMap
-
-    // L.marker([50.6311634, 3.0599573], {icon: myIcon}).bindPopup('Je suis un Frugal Marqueur').addTo(myfrugalmap).openPopup();
-    // this.http.get('https://opendata.lillemetropole.fr/api/records/1.0/search/?dataset=bornes-podotactiles').subscribe((data: any) => {
-    //   data.records.forEach((podotactile: { geometry: { coordinates: number[]; }; }) => {
-    //     L.marker([podotactile.geometry.coordinates[1], podotactile.geometry.coordinates[0]], { icon: myIcon }).addTo(myfrugalmap);
-    //   });
-    // });
-
   }
+
+
+  private toChargeProducteursGps = new Subject<Producteur[]>()
+
+  producteursGpsCharged$ = this.toChargeProducteursGps.asObservable()
+
+  chargeProducteursGps(producteurs: Producteur[] ) {
+    this.toChargeProducteursGps.next(producteurs)
+  }
+ 
 
   getPosition(): Promise<any> {
     return new Promise((resolve, reject) => {

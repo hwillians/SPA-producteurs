@@ -26,6 +26,7 @@ import { ProducteursCardComponent } from './components/producteurs-card/producte
 import { ProducteursListComponent } from './components/producteurs-list/producteurs-list.component';
 import { YieldCardComponent } from './components/yield-card/yield-card.component';
 import { ProducteursComponent } from './producteurs/producteurs.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -61,7 +62,8 @@ import { ProducteursComponent } from './producteurs/producteurs.component';
     ReactiveFormsModule,
     ScrollingModule,
     MatGridListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

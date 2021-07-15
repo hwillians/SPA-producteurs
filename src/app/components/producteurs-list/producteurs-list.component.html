@@ -1,30 +1,37 @@
 <mat-sidenav-container class="example-container">
-    <mat-sidenav class="sides" #sidenav mode="side" position="end">
+    <mat-sidenav class="sides" #sidenav mode="side" position="end" [(opened)]="opened">
         <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
         <app-producteurs-card></app-producteurs-card>
-
     </mat-sidenav>
 
     <mat-sidenav-content class="sides">
         <mat-form-field class="search-field" appearance="outline">
-            <!-- <mat-label>Favorite food</mat-label> -->
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            <input matInput (keyup)="getProducteursByName($event)" placeholder="Rechercher un producteur" >
+            <input matInput (keyup)="getProducteursByName($event)" placeholder="Rechercher un producteur">
         </mat-form-field>
 
-        <mat-card *ngIf="producteurs.length == 0">Cette recherche ne correspond à aucun producteur</mat-card>
+        <mat-card *ngIf="producteurs.length == 0">Cette recherche ne correspond pas à aucun producteur</mat-card>
+        <cdk-virtual-scroll-viewport itemSize="20" class="example-viewport">
+            <mat-card *cdkVirtualFor="let producteur of producteurs"
+                (click)="getProducteur(producteur);(opened?null:sidenav.toggle())">
 
-        <cdk-virtual-scroll-viewport itemSize="20" class="example-viewport" >
-            <mat-card *cdkVirtualFor="let producteur of producteurs" (click)="getProducteur(producteur);sidenav.toggle()">
-                <ngx-avatar [name]="(producteur.Lastname)+(' ')+(producteur.Firstname)"></ngx-avatar>
-                {{producteur.Lastname}}
-                {{producteur.Firstname}}
-                {{Totalrendement(producteur)}}
-                <span *ngFor="let rendement of producteur.Rendements">
-                    {{rendement.Farming}}
-                </span>
+                <mat-grid-list cols="6" rowHeight="25px">
+                    <mat-grid-tile rowspan="2">
+                        <ngx-avatar [name]="(producteur.Lastname)+(' ')+(producteur.Firstname)"></ngx-avatar>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="3"> 
+                        {{producteur.Lastname}} {{producteur.Firstname}}
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="2" rowspan="2">
+                        <span *ngFor="let rendement of producteur.Rendements">
+                            {{rendement.Farming}}
+                        </span>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="3">
+                        {{Totalrendement(producteur)}}
+                    </mat-grid-tile>
+                </mat-grid-list>
             </mat-card>
         </cdk-virtual-scroll-viewport>
     </mat-sidenav-content>
 </mat-sidenav-container>
-

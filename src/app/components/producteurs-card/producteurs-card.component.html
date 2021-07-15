@@ -12,7 +12,7 @@
             <mat-card-title>{{producteur.Lastname}} {{producteur.Firstname}}</mat-card-title>
         </mat-grid-tile>
         <mat-grid-tile rowspan="4">
-            <button mat-icon-button>
+            <button mat-icon-button (click)="close()">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-grid-tile>
@@ -37,7 +37,7 @@
         </button>
         <button mat-button> <img src="https://aixmarseille.spelc.fr/languedoc_roussillon/fleche-verte.png/image"
                 width="25px" height="25px" alt="fleche à gauche"></button>
-        <app-personal-card [producteur]="producteur"></app-personal-card>
-        <app-yield-card [producteur]="producteur"></app-yield-card>
+        <app-personal-card></app-personal-card>
+        <app-yield-card></app-yield-card>
     </mat-card-content>
 </mat-card>

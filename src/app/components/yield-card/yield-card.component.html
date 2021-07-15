@@ -1,49 +1,71 @@
-<!-- <mat-accordion>
-    <mat-expansion-panel hideToggle>
-   
+<mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Self aware panel
-        </mat-panel-title>
-        <mat-panel-description>
-        
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <p>I'm visible because I am open</p>
+    (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Nouveau rendement
+            </mat-panel-title>
+            <mat-panel-description>
+                <button mat-button *ngIf="panelOpenState" (click)="save()">Save</button>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-grid-list cols="5" rowHeight="75px">
+            <mat-grid-tile colspan="5">
+                <mat-form-field appearance="fill">
+                    <mat-label>Quantité</mat-label>
+                    <input matInput [(ngModel)]="rendement.Quantity" required type="number">
+                    <mat-error *ngIf="quantity.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="5">
+                <mat-form-field appearance="fill">
+                    <mat-label>Superficie Exploitée</mat-label>
+                    <input matInput [(ngModel)]="rendement.AreaExploited" type="number" required>
+                    <mat-error *ngIf="areaExploited.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="5">
+                <mat-form-field appearance="fill">
+                    <mat-label>Culture</mat-label>
+                    <mat-select [(ngModel)]="rendement.Farming" required>
+                      <mat-option value="Corn">
+                        Corn
+                      </mat-option>
+                      <mat-option value="Wheat">
+                        Wheat
+                    </mat-option>
+                    <mat-option value="Avocado">
+                        Avocado
+                    </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="farming.invalid">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="5">
+                <mat-form-field appearance="fill">
+                    <mat-label>Année</mat-label>
+                    <input matInput [(ngModel)]="rendement.Year" type="number" min="2000" max="2021" required>
+                    <mat-error *ngIf="year.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
     </mat-expansion-panel>
-  </mat-accordion>
+    <mat-expansion-panel *ngFor="let rendement of producteur.Rendements">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{rendement.Farming}}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{rendement.Year}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-grid-list cols="5" rowHeight="75px">
+            Quantité : {{ rendement.Quantity }} kg
+            <br />
+            Superficie exploitée {{rendement.AreaExploited}} ha
+        </mat-grid-list>
+    </mat-expansion-panel>
 
-
-<mat-grid-list cols="5" rowHeight="75px">
-    <mat-grid-tile colspan="5">
-        <mat-form-field appearance="fill">
-            <mat-label>Quantité</mat-label>
-            <input matInput [formControl]="quantity" [value]="producteur.Lastname" required readonly>
-            <mat-error *ngIf="lastname.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="5">
-        <mat-form-field appearance="fill">
-            <mat-label>Superficie Exploitée</mat-label>
-            <input matInput [formControl]="firstname" [value]="producteur.Firstname" required readonly>
-            <mat-error *ngIf="firstname.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="5">
-        <mat-form-field appearance="fill">
-            <mat-label>Culture</mat-label>
-            <input matInput [formControl]="addres" [value]="producteur.Village" required readonly>
-            <mat-error *ngIf="addres.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="5">
-        <mat-form-field appearance="fill">
-            <mat-label>Année</mat-label>
-            <input matInput [formControl]="addres" [value]="producteur.Village" required readonly>
-            <mat-error *ngIf="addres.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-    </mat-grid-tile>
-</mat-grid-list>
- -->
+  
+</mat-accordion>

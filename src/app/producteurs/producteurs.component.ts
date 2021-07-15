@@ -1,8 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import * as L from 'leaflet';
-import { LocationService } from '../services/location.service';
 import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { icon, LatLngExpression, layerGroup, Map, marker } from 'leaflet';
+import { producteurs } from '../data/Producteurs';
+import { Producteur } from '../models/producteur';
+import { LocationService } from '../services/location.service';
 import { SidenavService } from '../services/sidenav.service';
+
 
 @Component({
   selector: 'app-producteurs',
@@ -11,17 +14,19 @@ import { SidenavService } from '../services/sidenav.service';
 })
 export class ProducteursComponent implements OnInit {
 
-  constructor(private locationService: LocationService, private sidenavService : SidenavService,private http: HttpClient) {
-
+  constructor(private locationService: LocationService, private sidenavService: SidenavService, private http: HttpClient) {
+  
   }
+  
+  triedProducteurs: Producteur[] = producteurs;
 
-  myfrugalmap!: L.Map
+  myfrugalmap!: Map
 
   close() {
     this.sidenavService.emitChange(false);
   }
 
-  opensidenav(){
+  opensidenav() {
     this.sidenavService.emitChange(true);
   }
 
@@ -30,18 +35,21 @@ export class ProducteursComponent implements OnInit {
     //   console.log(`Positon: ${pos.lng} ${pos.lat}`);
     // });
 
-    const myIcon = L.icon({
+    const myIcon = icon({
       iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/images/marker-icon.png'
     });
+    let cities = layerGroup([]);
 
-    let cities = L.layerGroup([
-      L.marker([39.61, -105.02], { icon: myIcon }).bindPopup('This is Littleton, CO.'),
-      L.marker([39.74, -104.99], { icon: myIcon }).bindPopup('This is Denver, CO.'),
-      L.marker([39.73, -104.8], { icon: myIcon }).bindPopup('This is Aurora, CO.'),
-      L.marker([39.77, -105.23], { icon: myIcon }).bindPopup('This is Golden, CO.')
-    ]);
+    this.sidenavService.changeEmitted$.subscribe(
+      producteurs => {
+        this.triedProducteurs = producteurs
+      });
 
-    let center: L.LatLngExpression = [39.73, -104.99]
+    this.triedProducteurs.forEach(prod => {
+      cities.addLayer(marker(prod.GPSLocation, { icon: myIcon }).bindPopup(prod.Lastname))
+    })
+
+    let center: LatLngExpression = [43.638456629446516, 3.7872988526675115]
 
     this.myfrugalmap = this.locationService.getMap(cities, center)
   }

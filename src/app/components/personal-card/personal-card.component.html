@@ -5,12 +5,12 @@
     <mat-grid-tile colspan="5">
         <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
-            <input matInput [formControl]="lastname" [value]="producteur.Lastname" required readonly>
-            <mat-error *ngIf="lastname.invalid">{{getErrorMessage()}}</mat-error>
+            <input matInput [(ngModel)]="producteur.Lastname" [required]="editable" [readonly]="!editable">
+            <mat-error>{{getErrorMessage()}}</mat-error>
         </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile rowspan="2">
-        <button mat-mini-fab aria-label="Example icon button with a home icon">
+        <button mat-mini-fab aria-label="Example icon button with a home icon" (click)="!editable?editOn():editOff()">
             <mat-icon>edit</mat-icon>
         </button>
     </mat-grid-tile>
@@ -18,8 +18,8 @@
     <mat-grid-tile colspan="5">
         <mat-form-field appearance="fill">
             <mat-label>Prenom</mat-label>
-            <input matInput [formControl]="firstname" [value]="producteur.Firstname" required readonly>
-            <mat-error *ngIf="firstname.invalid">{{getErrorMessage()}}</mat-error>
+            <input matInput [(ngModel)]="producteur.Firstname" [required]="editable" [readonly]="!editable">
+            <mat-error>{{getErrorMessage()}}</mat-error>
         </mat-form-field>
     </mat-grid-tile>
 
@@ -32,8 +32,8 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Addresse</mat-label>
-            <input matInput [formControl]="addres" [value]="producteur.Village" required readonly>
-            <mat-error *ngIf="addres.invalid">{{getErrorMessage()}}</mat-error>
+            <input matInput [(ngModel)]="producteur.Village" [required]="editable" [readonly]="!editable">
+            <mat-error>{{getErrorMessage()}}</mat-error>
         </mat-form-field>
     </mat-grid-tile>
 </mat-grid-list>
