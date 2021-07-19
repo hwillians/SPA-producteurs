@@ -10,12 +10,7 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 })
 export class ProducteursCardComponent implements OnInit {
 
-  constructor(private producteurservice: ProducteursService,private sidenavService : SidenavService) { 
-    this.producteurservice.producteurEmitted.subscribe(
-      producteur => {
-        this.producteur = producteur
-      }); 
-  }
+  constructor(private producteurservice: ProducteursService,private sidenavService : SidenavService) { }
   Arr = Array
   personal :boolean= true
   producteur: Producteur = new Producteur;
@@ -24,13 +19,24 @@ export class ProducteursCardComponent implements OnInit {
     this.sidenavService.closeProducteursCard(false);
   }
 
-  swich(){
-    this.personal=!this.personal
-    this.producteurservice.emitProducteur(this.producteur)
+  swich(choix?:boolean){
+    if (choix == undefined) {
+      this.personal=!this.personal
+    }
+    else {
+      this.personal=choix
+    }
+  }
+
+  ngDoCheck(){
+    this.producteurservice.emitProducteur(this.producteur);
   }
   
   ngOnInit(): void {
-   
+    this.producteurservice.producteurEmitted.subscribe(
+      producteur => {
+        this.producteur = producteur
+      });
   }
 
 }

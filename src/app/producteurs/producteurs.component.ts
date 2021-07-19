@@ -40,11 +40,12 @@ export class ProducteursComponent implements OnInit {
     let cities = layerGroup([]);
 
     this.locationService.producteursGpsCharged$.subscribe(
-      producteurs => {     
+      producteurs => {
         cities = cities.clearLayers()
 
         producteurs.forEach(prod => {
-          cities.addLayer(marker(prod.GPSLocation, { icon: myIcon }).bindTooltip(prod.Lastname))
+          cities.addLayer(marker(prod.GPSLocation, { icon: myIcon })
+            .bindTooltip(prod.Lastname + ' ' + prod.Firstname))
         })
 
       });

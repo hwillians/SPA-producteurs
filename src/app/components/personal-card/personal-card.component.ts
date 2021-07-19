@@ -35,12 +35,12 @@ export class PersonalCardComponent implements OnInit {
 
     this.ngOnInit()
   }
-  save(){
+  save() {
 
   }
-cancel(){
-  
-}
+  cancel() {
+
+  }
 
   getErrorMessage() {
     return 'You must enter a value';
