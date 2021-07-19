@@ -18,6 +18,7 @@ export class SidenavService {
   emitChange(opened: boolean ) {
     this.emitChangeSource.next(opened)
   }
+  
   closeProducteursCard(opened: boolean) {
     this.toCloseProducteursCard.next(opened)
   }

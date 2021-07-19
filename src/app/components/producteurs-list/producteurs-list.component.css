@@ -1,25 +1,46 @@
-mat-card{
-    height: auto;
+mat-card {
+  height: 60px;
 }
-.sides{
-  width:   300px;
+
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
+
+#myList {
+  overflow-y: scroll;
+  height: inherit;
+}
+
+#rien,#message {
+  height: 15%;
+}
+
+#search {
+  height: auto;
+}
+
+.sides {
+  width: 300px;
+}
+
 mat-card:hover {
-	background-color: yellowgreen;
+  background-color: yellowgreen;
 }
 
-mat-sidenav-container{
-    height: 100%;
+mat-sidenav-container {
+  height: 100%;
 }
 
-cdk-virtual-scroll-viewport{
-    height: 80%;
+cdk-virtual-scroll-viewport {
+  height: 80%;
 }
 
 .search-field {
-    width: 100%;
-  }
+  width: 100%;
+}
 
-  .example-item {
-    height: 50px;
-  }
+.example-item {
+  height: 50px;
+}

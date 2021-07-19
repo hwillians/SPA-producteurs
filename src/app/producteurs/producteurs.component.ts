@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { icon, LatLngExpression, layerGroup, Map, marker } from 'leaflet';
-import { producteurs } from '../data/Producteurs';
 import { Producteur } from '../models/producteur';
 import { LocationService } from '../services/location.service';
 import { SidenavService } from '../services/sidenav.service';
@@ -15,10 +14,10 @@ import { SidenavService } from '../services/sidenav.service';
 export class ProducteursComponent implements OnInit {
 
   constructor(private locationService: LocationService, private sidenavService: SidenavService, private http: HttpClient) {
-  
+
   }
-  
-  triedProducteurs: Producteur[] = producteurs;
+
+  triedProducteurs: Producteur[] = [];
 
   myfrugalmap!: Map
 
@@ -40,14 +39,15 @@ export class ProducteursComponent implements OnInit {
     });
     let cities = layerGroup([]);
 
-    this.sidenavService.changeEmitted$.subscribe(
-      producteurs => {
-        this.triedProducteurs = producteurs
-      });
+    this.locationService.producteursGpsCharged$.subscribe(
+      producteurs => {     
+        cities = cities.clearLayers()
 
-    this.triedProducteurs.forEach(prod => {
-      cities.addLayer(marker(prod.GPSLocation, { icon: myIcon }).bindPopup(prod.Lastname))
-    })
+        producteurs.forEach(prod => {
+          cities.addLayer(marker(prod.GPSLocation, { icon: myIcon }).bindTooltip(prod.Lastname))
+        })
+
+      });
 
     let center: LatLngExpression = [43.638456629446516, 3.7872988526675115]
 

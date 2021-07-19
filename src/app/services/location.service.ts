@@ -63,7 +63,6 @@ export class LocationService {
     return myMap
   }
 
-
   private toChargeProducteursGps = new Subject<Producteur[]>()
 
   producteursGpsCharged$ = this.toChargeProducteursGps.asObservable()

@@ -27,7 +27,7 @@
         </mat-grid-tile>
     </mat-grid-list>
     <mat-card-content>
-        <button mat-button>
+        <button mat-button (click)="swich()">
             <img src="https://aixmarseille.spelc.fr/languedoc_roussillon/fleche-verte.png/image" width="25px"
                 height="25px" class="rotate180" alt="fleche à gauche">
         </button>
@@ -35,9 +35,11 @@
             <img src="https://img1.freepng.fr/20180320/eae/kisspng-area-rectangle-symbol-number-curved-white-arrow-png-5ab1bd540ce335.8013158515215977800528.jpg"
                 width="25px" height="25px" class="rotate180" alt="fleche à gauche">
         </button>
-        <button mat-button> <img src="https://aixmarseille.spelc.fr/languedoc_roussillon/fleche-verte.png/image"
+        <button mat-button (click)="swich()"> <img src="https://aixmarseille.spelc.fr/languedoc_roussillon/fleche-verte.png/image"
                 width="25px" height="25px" alt="fleche à gauche"></button>
-        <app-personal-card></app-personal-card>
-        <app-yield-card></app-yield-card>
+        
+                <app-personal-card class="cards" *ngIf="personal"></app-personal-card>
+        
+                <app-yield-card class="cards" *ngIf="!personal"></app-yield-card>
     </mat-card-content>
 </mat-card>

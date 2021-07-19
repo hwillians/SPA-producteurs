@@ -11,6 +11,10 @@ mat-grid-list{
     height: inherit;
 }
 
+cards{
+    height: 100%;
+}
+
 .rotate180 {
     -webkit-transform: rotate(18deg);
     -moz-transform: rotate(18deg);
