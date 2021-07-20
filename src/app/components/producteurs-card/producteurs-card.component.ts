@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Producteur } from 'src/app/models/producteur';
 import { ProducteursService } from 'src/app/services/producteurs.service';
 import { SidenavService } from 'src/app/services/sidenav.service';

@@ -40,6 +40,4 @@
 
 <h5>cultures</h5>
 
-<span *ngFor="let rendement of producteur.Rendements">
-    {{rendement.Farming}}
-</span>
+<mat-icon *ngFor="let rendement of producteur.Rendements" [svgIcon]="rendement.Farming"></mat-icon>

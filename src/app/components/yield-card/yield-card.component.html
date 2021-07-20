@@ -28,17 +28,33 @@
             <mat-grid-tile colspan="5">
                 <mat-form-field appearance="fill">
                     <mat-label>Culture</mat-label>
+
+                    <mat-button-toggle-group #group="matButtonToggleGroup">
+                        <mat-button-toggle value="corn" aria-label="Text align left">
+                            <mat-icon svgIcon="corn"></mat-icon>
+                        </mat-button-toggle>
+                        <mat-button-toggle value="wheat" aria-label="Text align center">
+                            <mat-icon svgIcon="wheat"></mat-icon>
+                        </mat-button-toggle>
+                        <mat-button-toggle value="avocado" aria-label="Text align right">
+                            <mat-icon svgIcon="avocado"></mat-icon>
+                        </mat-button-toggle>
+                      </mat-button-toggle-group>
+                      <div class="example-selected-value">Selected value: {{group.value}}</div>
+
                     <mat-select [(ngModel)]="rendement.Farming" required>
-                      <mat-option value="Corn">
-                        Corn
+                      <mat-option value="corn">
+                        
                       </mat-option>
-                      <mat-option value="Wheat">
-                        Wheat
+                      <mat-option value="wheat">
+                      
                     </mat-option>
-                    <mat-option value="Avocado">
-                        Avocado
+                    <mat-option value="avocado">
+                       
                     </mat-option>
                     </mat-select>
+
+
                     <mat-error *ngIf="farming.invalid">{{getErrorMessage()}}</mat-error>
                   </mat-form-field>
             </mat-grid-tile>
@@ -63,7 +79,7 @@
         <mat-grid-list cols="5" rowHeight="75px">
             Quantité : {{ rendement.Quantity }} kg
             <br />
-            Superficie exploitée {{rendement.AreaExploited}} ha
+            Superficie exploitée : {{rendement.AreaExploited}} ha
         </mat-grid-list>
     </mat-expansion-panel>
 

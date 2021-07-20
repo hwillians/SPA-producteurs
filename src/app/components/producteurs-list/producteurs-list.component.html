@@ -11,7 +11,7 @@
                 <input matInput (keyup)="getProducteursByName($event)" placeholder="Rechercher un producteur">
             </mat-form-field>
         </div>
-      
+
 
         <div (scroll)="scrollProducteurs()" #myList id="myList">
             <mat-card *ngIf="producteurs.length == 0">Cette recherche ne correspond pas à aucun producteur</mat-card>
@@ -26,10 +26,7 @@
                             {{producteur.Lastname}} {{producteur.Firstname}}
                         </mat-grid-tile>
                         <mat-grid-tile colspan="2" rowspan="2">
-    
-                            <span *ngFor="let rendement of producteur.Rendements">
-                                {{rendement.Farming}}
-                            </span>
+                            <mat-icon *ngFor="let rendement of producteur.Rendements" [svgIcon]="rendement.Farming"></mat-icon>
                         </mat-grid-tile>
                         <mat-grid-tile colspan="3">
                             {{Totalrendement(producteur)}}

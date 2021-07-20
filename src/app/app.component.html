@@ -1,18 +1,19 @@
 <mat-drawer-container class="example-container">
 
-  <mat-drawer #menupanel mode="side"  [(opened)]="fix ? true : opened">
+  <mat-drawer (mouseenter)="open()" #menupanel mode="side" [(opened)]="fix ? true : opened">
     <mat-toolbar color="primary">
       <span class="example-spacer"></span>
 
       <button mat-icon-button class="example-icon" aria-label="share" (click)="fixed()">
-        <mat-icon>{{fix ? 'push_pin' : 'location_off'}}</mat-icon>
+        <mat-icon *ngIf="fix">push_pin</mat-icon>
+        <mat-icon *ngIf="!fix" svgIcon="push-pin"></mat-icon>
       </button>
 
     </mat-toolbar>
     <a mat-button (click)="fix ? null : menupanel.toggle()" routerLink="/producteurs">Producteurs</a>
   </mat-drawer>
 
-  <mat-drawer-content >
+  <mat-drawer-content>
     <router-outlet></router-outlet>
   </mat-drawer-content>
 

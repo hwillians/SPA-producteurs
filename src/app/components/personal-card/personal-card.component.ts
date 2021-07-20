@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Producteur } from 'src/app/models/producteur';
 import { ProducteursService } from 'src/app/services/producteurs.service';
 
@@ -10,7 +12,9 @@ import { ProducteursService } from 'src/app/services/producteurs.service';
 })
 export class PersonalCardComponent implements OnInit {
 
-  constructor(private producteurservice: ProducteursService) { }
+  constructor(private producteurservice: ProducteursService,
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer) { }
 
   producteur: Producteur = new Producteur;
   firstname = new FormControl('');
@@ -48,6 +52,14 @@ export class PersonalCardComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.iconRegistry
+    .addSvgIcon(
+      'avocado', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/avocado.svg'))
+    .addSvgIcon(
+      'corn', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/corn.svg'))
+    .addSvgIcon(
+      'wheat', this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/wheat.svg'));
+
     this.producteurservice.producteurEmitted.subscribe(
       producteur => {
         this.producteur = producteur
