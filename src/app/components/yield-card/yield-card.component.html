@@ -1,71 +1,62 @@
 <mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-    (closed)="panelOpenState = false">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Nouveau rendement
             </mat-panel-title>
             <mat-panel-description>
-                <button mat-button *ngIf="panelOpenState" (click)="save()">Save</button>
+                <button mat-raised-button *ngIf="panelOpenState" [disabled]="etatForm.invalid"
+                    (click)="save()">Save</button>
             </mat-panel-description>
         </mat-expansion-panel-header>
+        <form #etatForm="ngForm">
+            <mat-grid-list cols="5" rowHeight="75px">
+                <mat-grid-tile colspan="5">
+                    <mat-form-field appearance="fill" [ngClass]="{ 'was-validated' : champQuantity.dirty}">
+                        <mat-label>Quantité</mat-label>
+                        <input #champQuantity="ngModel" id="Quantity" name="Quantity" matInput
+                            [(ngModel)]="rendement.Quantity" required type="number">
+                        <mat-error  *ngIf="champQuantity.dirty && champQuantity.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="5">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Superficie Exploitée</mat-label>
+                        <input matInput [(ngModel)]="rendement.AreaExploited" #champAreaExploited="ngModel" id="AreaExploited" name="AreaExploited"
+                            type="number" required>
+                        <mat-error *ngIf="champAreaExploited.dirty && champAreaExploited.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="5">
+                    <section>
+                        <mat-label>Culture</mat-label>
+                        <mat-button-toggle-group #selectedFarming name="Farming" #champFarming="ngModel" [(ngModel)]="rendement.Farming"
+                            required aria-label="Font Style">
+                            <mat-button-toggle value="corn">
+                                <mat-icon svgIcon="corn"></mat-icon>
+                            </mat-button-toggle>
+                            <mat-button-toggle value="wheat">
+                                <mat-icon svgIcon="wheat"></mat-icon>
+                            </mat-button-toggle>
+                            <mat-button-toggle value="avocado">
+                                <mat-icon svgIcon="avocado"></mat-icon>
+                            </mat-button-toggle>
+                        </mat-button-toggle-group>
+                        <mat-error *ngIf="champFarming.dirty && champFarming.invalid">{{getErrorMessage()}}</mat-error>
+                    </section>
 
-        <mat-grid-list cols="5" rowHeight="75px">
-            <mat-grid-tile colspan="5">
-                <mat-form-field appearance="fill">
-                    <mat-label>Quantité</mat-label>
-                    <input matInput [(ngModel)]="rendement.Quantity" required type="number">
-                    <mat-error *ngIf="quantity.invalid">{{getErrorMessage()}}</mat-error>
-                </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="5">
-                <mat-form-field appearance="fill">
-                    <mat-label>Superficie Exploitée</mat-label>
-                    <input matInput [(ngModel)]="rendement.AreaExploited" type="number" required>
-                    <mat-error *ngIf="areaExploited.invalid">{{getErrorMessage()}}</mat-error>
-                </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="5">
-                <mat-form-field appearance="fill">
-                    <mat-label>Culture</mat-label>
-
-                    <mat-button-toggle-group #group="matButtonToggleGroup">
-                        <mat-button-toggle value="corn" aria-label="Text align left">
-                            <mat-icon svgIcon="corn"></mat-icon>
-                        </mat-button-toggle>
-                        <mat-button-toggle value="wheat" aria-label="Text align center">
-                            <mat-icon svgIcon="wheat"></mat-icon>
-                        </mat-button-toggle>
-                        <mat-button-toggle value="avocado" aria-label="Text align right">
-                            <mat-icon svgIcon="avocado"></mat-icon>
-                        </mat-button-toggle>
-                      </mat-button-toggle-group>
-                      <div class="example-selected-value">Selected value: {{group.value}}</div>
-
-                    <mat-select [(ngModel)]="rendement.Farming" required>
-                      <mat-option value="corn">
-                        
-                      </mat-option>
-                      <mat-option value="wheat">
-                      
-                    </mat-option>
-                    <mat-option value="avocado">
-                       
-                    </mat-option>
-                    </mat-select>
-
-
-                    <mat-error *ngIf="farming.invalid">{{getErrorMessage()}}</mat-error>
-                  </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="5">
-                <mat-form-field appearance="fill">
-                    <mat-label>Année</mat-label>
-                    <input matInput [(ngModel)]="rendement.Year" type="number" min="2000" max="2021" required>
-                    <mat-error *ngIf="year.invalid">{{getErrorMessage()}}</mat-error>
-                </mat-form-field>
-            </mat-grid-tile>
-        </mat-grid-list>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="5">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Année</mat-label>
+                        <input name="Year" matInput #champYear="ngModel" [(ngModel)]="rendement.Year" type="number" min="2000" max="2021"
+                            required>
+                        <mat-error *ngIf="champYear.dirty && champYear.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
     </mat-expansion-panel>
     <mat-expansion-panel *ngFor="let rendement of producteur.Rendements">
         <mat-expansion-panel-header>
@@ -81,7 +72,7 @@
             <br />
             Superficie exploitée : {{rendement.AreaExploited}} ha
         </mat-grid-list>
+
     </mat-expansion-panel>
 
-  
 </mat-accordion>
