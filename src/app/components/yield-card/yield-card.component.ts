@@ -26,6 +26,7 @@ export class YieldCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.rendement = new Rendement
    
     this.producteurservice.producteurEmitted.subscribe(
       producteur => {

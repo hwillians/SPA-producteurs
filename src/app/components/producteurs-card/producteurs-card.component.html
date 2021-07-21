@@ -27,21 +27,25 @@
         </mat-grid-tile>
     </mat-grid-list>
     <mat-card-content>
-        <button mat-button (click)="swich()">
-            <img src="assets/img/fleche.png" width="25px" height="25px" class="rotate180" alt="fleche à gauche">
-        </button>
-        <span>Fiche</span>
-        <button mat-button [matMenuTriggerFor]="menu">
-            <img src="assets/img/fleche_d.png" width="25px" height="25px" alt="fleche à gauche">
-        </button>
+        <div id="navig">
+            <button mat-button (click)="swich()">
+                <img src="assets/img/fleche.png" width="25px" height="25px" class="rotate180" alt="fleche blanche">
+            </button>
+            <div id="rectangle">
+                <span>{{personal?'Fiche':'Rendements'}}</span>
+                <button  mat-icon-button [matMenuTriggerFor]="menu">
+                    <img src="assets/img/fleche_d.png" width="25px" height="25px" alt="fleche à gauche">
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="swich(true)">Fiche</button>
+                    <button mat-menu-item (click)="swich(false)">Rendements</button>
+                </mat-menu>
+            </div>
+            <button mat-button (click)="swich()">
+                <img src="assets/img/fleche.png" width="25px" height="25px" alt="fleche à droite">
+            </button>
+        </div>
 
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="swich(true)">Fiche</button>
-            <button mat-menu-item (click)="swich(false)">Rendements</button>
-        </mat-menu>
-
-        <button mat-button (click)="swich()"> <img src="assets/img/fleche.png" width="25px" height="25px"
-                alt="fleche à gauche"></button>
 
         <app-personal-card class="cards" *ngIf="personal"></app-personal-card>
 

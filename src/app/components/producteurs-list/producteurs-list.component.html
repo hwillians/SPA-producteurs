@@ -16,22 +16,26 @@
         <div (scroll)="scrollProducteurs()" #myList id="myList">
             <mat-card *ngIf="producteurs.length == 0">Cette recherche ne correspond pas à aucun producteur</mat-card>
             <mat-selection-list [multiple]="false">
-                <mat-list-option #myItem *ngFor="let producteur of producteurs" [value]="selectedProducteur"
+                <mat-list-option class="myItem" #myItem *ngFor="let producteur of producteurs" [value]="selectedProducteur"
                     (click)="sendProducteur(producteur);(opened ? null : sidenav.toggle())">
-                    <mat-grid-list *ngIf="producteur" cols="6" rowHeight="25px">
-                        <mat-grid-tile rowspan="2">
+                    <mat-grid-list *ngIf="producteur" cols="10" rowHeight="30px">
+                        <mat-grid-tile rowspan="2" colspan="2">
                             <ngx-avatar [name]="(producteur.Lastname)+(' ')+(producteur.Firstname)"></ngx-avatar>
                         </mat-grid-tile>
-                        <mat-grid-tile colspan="3">
+                        <mat-grid-tile colspan="6">
                             {{producteur.Lastname}} {{producteur.Firstname}}
                         </mat-grid-tile>
                         <mat-grid-tile colspan="2" rowspan="2">
                             <mat-icon *ngFor="let rendement of producteur.Rendements" [svgIcon]="rendement.Farming"></mat-icon>
                         </mat-grid-tile>
-                        <mat-grid-tile colspan="3">
-                            {{Totalrendement(producteur)}}
+                        <mat-grid-tile colspan="6">
+                            <span >
+                                <mat-icon > area_chart</mat-icon>   
+                                </span> 1 | {{Totalrendement(producteur)}} ha
+                         
                         </mat-grid-tile>
                     </mat-grid-list>
+                  
                 </mat-list-option>
             </mat-selection-list>
         </div>

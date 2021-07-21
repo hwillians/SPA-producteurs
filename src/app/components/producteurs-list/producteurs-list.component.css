@@ -1,5 +1,5 @@
-mat-card {
-  height: 60px;
+.myItem {
+  min-height: 70px;
 }
 
 mat-sidenav-content {
@@ -8,12 +8,31 @@ mat-sidenav-content {
   height: 100%;
 }
 
+mat-list-option[aria-selected="true"] {
+  background-color: rgb(255, 230, 0);
+}
+
+mat-list-option:hover {
+  background-color: rgba(219, 199, 16, 0.596);
+}
+
+mat-grid-tile> ::ng-deep figure  {
+  display: flex;
+  align-items: center !important;
+
+}
+
+mat-list-option {
+
+  border-bottom: 1px solid black;
+}
+
 #myList {
   overflow-y: scroll;
   height: inherit;
 }
 
-#rien,#message {
+#rien, #message {
   height: 15%;
 }
 
@@ -23,10 +42,6 @@ mat-sidenav-content {
 
 .sides {
   width: 300px;
-}
-
-mat-card:hover {
-  background-color: yellowgreen;
 }
 
 mat-sidenav-container {

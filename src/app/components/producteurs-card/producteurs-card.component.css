@@ -6,6 +6,23 @@ mat-grid-list{
     width: 100%;
 }
 
+#navig{
+    display: flex;
+    margin-top: 5px;
+  
+}
+
+#rectangle{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:150px;
+    height: 30px;
+    background:green;
+    border-radius: 5px;
+}
+
 .head{
     background-color: green;
     height: inherit;
