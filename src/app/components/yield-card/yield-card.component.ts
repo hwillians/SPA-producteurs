@@ -25,9 +25,13 @@ export class YieldCardComponent implements OnInit {
     this.rendement = new Rendement
   }
 
+  sorted(rendements: any): Rendement[] {
+    return rendements.sort((a: { Year: number; }, b: { Year: number; }) => b.Year - a.Year)
+  }
+
   ngOnInit(): void {
     this.rendement = new Rendement
-   
+
     this.producteurservice.producteurEmitted.subscribe(
       producteur => {
         this.producteur = producteur

@@ -8,11 +8,10 @@ import { Producteur } from '../models/producteur';
 })
 export class ProducteursService {
 
-  // Observable string sources
   private emitChangeSource = new Subject<any>();
-  // Observable string streams
+
   producteurEmitted = this.emitChangeSource.asObservable();
-  // Service message commands
+
   emitProducteur(producteur: Producteur) {
     this.emitChangeSource.next(producteur);
   }

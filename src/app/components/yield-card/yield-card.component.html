@@ -58,7 +58,7 @@
             </mat-grid-list>
         </form>
     </mat-expansion-panel>
-    <mat-expansion-panel *ngFor="let rendement of producteur.Rendements">
+    <mat-expansion-panel *ngFor="let rendement of sorted(producteur.Rendements)">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 {{rendement.Farming}}

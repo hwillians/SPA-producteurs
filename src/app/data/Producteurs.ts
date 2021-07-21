@@ -2,7 +2,7 @@ import { Producteur } from "../models/producteur";
 import { rendements } from "./Rendements";
 
 export let producteurs: Producteur[] = [
-  { Firstname: 'Pedro', Lastname: 'Lopez', Village: 'Montpellier', GPSLocation: [0,0], Performance: 3, },
+  { Firstname: 'Pedro', Lastname: 'Lopez', Village: 'Montpellier', GPSLocation: [0, 0], Performance: 3, },
   { Firstname: "Audra", Lastname: "Hanson", Village: "Cholet", GPSLocation: [43.63994740517315, 3.7725359749265586], Performance: 3 },
   { Firstname: "Tanner", Lastname: "Meyer", Village: "Roccabruna", GPSLocation: [43.59868896578769, 3.7004381999126004], Performance: 4 },
   { Firstname: "Rae", Lastname: "Cunningham", Village: "Tuscaloosa", GPSLocation: [43.638456629446516, 3.7872988526675115], Performance: 2 },
@@ -105,13 +105,19 @@ export let producteurs: Producteur[] = [
   { Firstname: "Moana", Lastname: "Greer", Village: "Vorst", GPSLocation: [-28.15286, -138.69805], Performance: 4 }
 ]
 
-producteurs.forEach(producteur => {
+producteurs.forEach((producteur)=> {
   let index1 = Math.floor(Math.random() * 99),
     index2 = Math.floor(Math.random() * 99),
     index3 = Math.floor(Math.random() * 99)
+
   producteur.GPSLocation = [43.5 + Math.random(), 3 + Math.random()] // autour de Montpellier (pour la visibilité)
-  producteur.Rendements = [rendements[index1], rendements[index3], rendements[index2]]
-  producteur.Rendements.filter(rendement =>
-    producteur.Rendements?.every(e => rendement.Farming !== e.Farming)
-  )
+
+  producteur.Rendements = []
+  producteur.Rendements.push(rendements[index1])
+  if (rendements[index1].Farming !== rendements[index2].Farming) {
+    producteur.Rendements.push(rendements[index2])
+  }
+  if (rendements[index1].Farming !== rendements[index3].Farming && rendements[index2].Farming !== rendements[index3].Farming) {
+    producteur.Rendements.push(rendements[index3])
+  }
 });
